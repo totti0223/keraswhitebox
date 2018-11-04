@@ -2,7 +2,7 @@
 
 Visualization toolbox for extracting interpretable information from the neural network built from Keras.
 
-![Unknown-5](../keraswhitebox/assets/Unknown-5.png)![Unknown-3](../keraswhitebox/assets/Unknown-3.png)![Unknown-2](../keraswhitebox/assets/Unknown-2.png)![Unknown-1](../keraswhitebox/assets/Unknown-1.png)
+![Unknown-5](assets/Unknown-5.png)![Unknown-3](assets/Unknown-3.png)![Unknown-2](assets/Unknown-2.png)![Unknown-1](assets/Unknown-1.png)
 
 
 
