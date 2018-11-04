@@ -50,7 +50,7 @@ git clone
 
 ### Related repository
 
-![mixed0_230](resources/mixed0_230.jpg)**Feature Visualization** by neuron activation maximization: [lucid4keras](https://github.com/totti0223/lucid4keras)
+![mixed0_230](assets/mixed0_230.jpg)**Feature Visualization** by neuron activation maximization: [lucid4keras](https://github.com/totti0223/lucid4keras)
 
 
 
