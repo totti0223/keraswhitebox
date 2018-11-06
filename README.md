@@ -46,11 +46,11 @@ git clone
 
 ​	Explanation Map
 
-
-
-### Related repository
+## Related repository
 
 ![mixed0_230](assets/mixed0_230.jpg)**Feature Visualization** by neuron activation maximization: [lucid4keras](https://github.com/totti0223/lucid4keras)
+
+
 
 
 

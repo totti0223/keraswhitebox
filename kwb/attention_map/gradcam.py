@@ -29,8 +29,8 @@ def grad_cam(input_model, images, layer_name, cls=-1, method = "naive",resize_to
         #print(i)
         if method == "naive":
             grads = K.gradients(y_c, conv_output)[0]
-            gradient_function = K.function([input_model.input], [conv_output, grads])
-            _output, _grads_val = gradient_function([images[i:i+1]])
+            gradient_function = K.function([input_model.input, K.learning_phase()], [conv_output, grads])
+            _output, _grads_val = gradient_function([images[i:i+1],0])
             _output, _grads_val = _output[0,:,:,:], _grads_val[0, :, :, :]
             _weights = np.mean(_grads_val, axis=(0, 1))
             _cam = np.dot(_output, _weights)
@@ -39,9 +39,9 @@ def grad_cam(input_model, images, layer_name, cls=-1, method = "naive",resize_to
             first = K.exp(y_c)*grads
             second = K.exp(y_c)*grads*grads
             third = K.exp(y_c)*grads*grads
-            gradient_function = K.function([input_model.input], [first,second,third, conv_output, grads])
+            gradient_function = K.function([input_model.input, K.learning_phase()], [first,second,third, conv_output, grads])
 
-            conv_first_grad, conv_second_grad,conv_third_grad, conv_output, grads_val = gradient_function([images[i:i+1]])
+            conv_first_grad, conv_second_grad,conv_third_grad, conv_output, grads_val = gradient_function([images[i:i+1],0])
             global_sum = np.sum(conv_output[0].reshape((-1,conv_first_grad[0].shape[2])), axis=0)
             alpha_num = conv_second_grad[0]
             alpha_denom = conv_second_grad[0]*2.0 + conv_third_grad[0]*global_sum.reshape((1,1,conv_first_grad[0].shape[2]))
