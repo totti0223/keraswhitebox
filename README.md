@@ -8,11 +8,9 @@ Visualization toolbox for extracting interpretable information from the neural n
 
 For Grad-CAM and Explanationmap for Plant Disease visualization, access the ipynb bellow
 
-
-
 ![Unknown](assets/Unknown-3501555.png)
 
-[4_plantvillage_visualization.ipynb](4_plantvillage_visualization.ipynb)
+[4_plantvillage_visualization.ipynb](examples/4_plantvillage_visualization.ipynb)
 
 ## Requirements
 
