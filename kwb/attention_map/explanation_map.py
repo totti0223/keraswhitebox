@@ -8,9 +8,9 @@ def EM(model,target_image,reference_images,layername="activation_1"):
     Sambuddha Ghosala,1, David Blystoneb,1, Asheesh K. Singhb, Baskar Ganapathysubramaniana, Arti Singhb,2, and Soumik Sarkara,2
     input:
         model : keras model
-        target_image : colored input image with or without batch dimention
-        regerence_images : reference_image(s) with or without needes batch dimention
-        layername : layer of interest.
+        target_image : colored input image. with or without batch dimention
+        regerence_images : reference_image(s). needes batch dimention
+        layername : layer of interest. defaults to conv1 layer (activation_1 for inceptionv3)
     returns: heatmap
     '''
     if len(target_image.shape) == 3:
@@ -46,7 +46,7 @@ def EM(model,target_image,reference_images,layername="activation_1"):
         ASA.append(np.mean(ASA_per_channel)) 
 
     ASA = np.array(ASA)
-    ASA = np.mean(ASA) + 3*np.std(ASA) #the threshold
+    ASA = np.mean(ASA) + 3 * np.std(ASA) #the threshold
     #print("SA threshold of the given reference images is:",ASA)
     
 
@@ -56,7 +56,7 @@ def EM(model,target_image,reference_images,layername="activation_1"):
 
     FI = []
     for i in range(intermediate_output.shape[3]): #per channel
-        deltaAuv = Auv[:,:,:,i]-ASA#[i]
+        deltaAuv = Auv[:,:,:,i] - ASA#[i]
         Iuv = deltaAuv.copy() #indicator function check the subtracted feature map whether its positive or negative per pixel
         Iuv[Iuv <= 0] = 0
         Iuv[Iuv > 0] = 1
@@ -65,9 +65,9 @@ def EM(model,target_image,reference_images,layername="activation_1"):
         else:
             FeatureImportanceMetric = 0
         FI.append(FeatureImportanceMetric)
-        #break
+        
     FI = np.array(FI) #final feature importance metric
-    #print("FI is:",FI,FI.shape)
+    
         
     explanationperimage= []
     #get top3 feature indxs
@@ -92,6 +92,6 @@ def EM(model,target_image,reference_images,layername="activation_1"):
     
     EMuvs = zoom(EMuvs,target_image.shape[1]/EMuvs.shape[0])
     
-    del intermediate_layer_model #for repetative analysis
+    del intermediate_layer_model #for repetative analysis. release graph
     
     return EMuvs
